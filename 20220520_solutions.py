@@ -185,15 +185,13 @@ from random import random, randint
 #
 #         self.account_number = num1 + '-' + num2 + '-' + num3
 
-    # def create(self):
-    #     print('은행이름: SC은행')
-    #     account_address = ''
-    #     for i in range(12):
-    #         num = randint(1,10)
-    #         account_address += str(num)
-    #     print(account_address[:3],'-',account_address[4:6],'-',account_address[6:])
-
-
+# def create(self):
+#     print('은행이름: SC은행')
+#     account_address = ''
+#     for i in range(12):
+#         num = randint(1,10)
+#         account_address += str(num)
+#     print(account_address[:3],'-',account_address[4:6],'-',account_address[6:])
 
 
 # a = Account("김진주", 2000)
@@ -396,8 +394,9 @@ from random import random, randint
 
 # 277 입금 횟수가 5회가 될 때 잔고를 기준으로 1%의 이자가 잔고에 추가되도록 코드를 변경해보세요.
 from random import random, randint
-class Account:
 
+
+class Account:
     account_count = 0
 
     def __init__(self, name, credit):
@@ -408,9 +407,9 @@ class Account:
         self.name = name
         self.credit = credit
         self.bank = "SC은행"
-        num1 = randint(0,999)
-        num2 = randint(0,99)
-        num3 = randint(0,999999)
+        num1 = randint(0, 999)
+        num2 = randint(0, 99)
+        num3 = randint(0, 999999)
 
         num1 = str(num1).zfill(3)
         num2 = str(num2).zfill(2)
@@ -448,12 +447,11 @@ class Account:
 
     def deposit_history(self):
         for i in self.deposit_log:
-            print("입금:",i)
+            print("입금:", i)
 
     def withdraw_history(self):
         for i in self.withdraw_log:
-            print("출금",i)
-
+            print("출금", i)
 
 
 # 278 Account 클래스로부터 3개 이상 인스턴스를 생성하고 생성된 인스턴스를 리스트에 저장해보세요.
@@ -477,6 +475,7 @@ a.deposit(3000)
 a.deposit(10000)
 a.deposit_history()
 
+
 # 281 다음 코드가 동작하도록 차 클래스를 정의하세요.
 #
 # >> car = 차(2, 1000)
@@ -489,9 +488,11 @@ class 차:
         self.바퀴 = wheel
         self.가격 = price
 
+
 car = 차(2, 1000)
 print(car.바퀴)
 print(car.가격)
+
 
 # 282 차 클래스를 상속받은 자전차 클래스를 정의하세요.
 # class 자전차(차):
@@ -535,8 +536,10 @@ class 자동차(차):
         print(self.바퀴)
         print(self.가격)
 
+
 car = 자동차(4, 1000)
 car.정보()
+
 
 # 286 다음 코드가 동작하도록 차 클래스를 수정하세요.
 #
@@ -554,14 +557,15 @@ car.정보()
 # 가격 100
 # 구동계 시마노
 class 자전차(차):
-    def __init__(self, wheel,price,name):
-        super().__init__(wheel,price)
+    def __init__(self, wheel, price, name):
+        super().__init__(wheel, price)
         self.구동계 = name
 
     def 정보(self):
         print(self.바퀴)
         print(self.가격)
         print(self.구동계)
+
 
 bicycle = 자전차(2, 100, "시마노")
 bicycle.정보()
@@ -622,7 +626,6 @@ f.write("005380\n")
 f.write("035420\n")
 f.close()
 
-
 # 292 바탕화면에 '매수종목2.txt' 파일을 생성한 후 다음과 같이 종목코드와 종목명을 파일에 써보세요.
 #
 # 005930 삼성전자
@@ -643,11 +646,106 @@ writer.writerow(["NAVER", "035420", 55.82])
 f.close()
 
 # 294 바탕화면에 생성한 '매수종목1.txt' 파일을 읽은 후 종목코드를 리스트에 저장해보세요.
-f = open("매수종목1.txt", mode="wt", encoding="utf-8")
+f = open("매수종목1.txt", encoding="utf-8")
+lines = f.readlines()
+print(lines)
+codes = []
+for line in lines:
+    code = line.strip()
+    codes.append(code)
+
+f.close()
+print(codes)
+
+# 295 바탕화면에 생성한 '매수종목2.txt' 파일을 읽은 후 종목코드와 종목명을 딕셔너리로 저장해보세요. 종목명을 key로 종목명을 value로 저장합니다.
+#
+f = open("매수종목2.txt", encoding="utf-8")
+lines = f.readlines()
+print(lines)
+dicts = {}
+for line in lines:
+    company = line.split('\t')[1].strip()
+    code = line.split('\t')[0]
+    dicts[company] = code
+
+f.close()
+print(dicts)
+
+# 296 문자열 PER (Price to Earning Ratio) 값을 실수로 변환할 때 에러가 발생합니다. 예외처리를 통해 에러가 발생하는 PER은 0으로 출력하세요.
+#
+per = ["10.31", "", "8.00"]
+
+# for i in per:
+#     if i == '':
+#         print(0)
+#     else:
+#         print(float(i))
+
+for i in per:
+    try:
+        print(float(i))
+    except:
+        print(0)
+
+# 297 문자열로 표현된 PER 값을 실수로 변환한 후 이를 새로운 리스트에 저장해보세요.
+#
+per = ["10.31", "", "8.00"]
+new_per = []
+for i in per:
+    try:
+        new_per.append(float(i))
+    except:
+        new_per.append(0)
+
+print(new_per)
+
+# 298 어떤 값을 0으로 나누면 ZeroDivisionError 에러가 발생합니다. try ~ except로 모든 에러에 대해 예외처리하지 말고 ZeroDivisionError 에러만 예외처리해보세요.
+# 3 / 0
+try:
+    3 / 0
+except ZeroDivisionError:
+    print("0으로 나눌 수 없어요")
+
+# 299 다음과 같은 코드 구조를 사용하면 예외 발생 시 에러 메시지를 변수로 바인딩할 수 있습니다.
+#
+# try:
+#     실행코드
+# except 예외 as 변수:
+#     예외처리코드
+# 리스트의 인덱싱에 대해 에러를 출력해보세요.
+#
+data = [1, 2, 3]
 
 
+for i in range(5):
+    try:
+        print(data[i])
+    except IndexError as e:
+        print(e)
 
+# 300 파이썬 예외처리는 다음과 같은 구조를 가질 수 있습니다.
+#
+# try:
+#     실행 코드
+# except:
+#     예외가 발생했을 때 수행할 코드
+# else:
+#     예외가 발생하지 않았을 때 수행할 코드
+# finally:
+#     예외 발생 여부와 상관없이 항상 수행할 코드
+# 아래의 코드에 대해서 예외처리를 사용하고 try, except, else, finally에 적당한 코드를 작성해봅시다. else와 finally는 적당한 문구를 print하시면 됩니다.
+#
+per = ["10.31", "", "8.00"]
 
+for i in per:
+    try:
+        print(float(i))
+    except:
+        print(0)
+    else:
+        print("clean data")
+    finally:
+        print("변환완료")
 
 
 
